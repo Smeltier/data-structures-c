@@ -3,13 +3,8 @@
 
 #include <stdbool.h>
 
-// INTERFACE DA ESTRUTURA DE DADOS
-
-// DECLARAÇÃO DO TIPO:
 typedef struct lista_sequencial lista_sequencial;
 typedef int Item;
-
-// PROTÓTIPOS DAS OPERAÇÕES:
 
 /*
  * Descrição:  Busca um item dentro da lista.

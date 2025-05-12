@@ -3,12 +3,7 @@
 
 #include <stdbool.h>
 
-// INTERFACE DA LISTA ENCADEADA
-
-// DECLARAÇÃO DO TIPO:
 typedef struct lista_encadeada lista_encadeada;
-
-// PROTÓTIPOS DAS OPERAÇÕES:
 
 /*
  * Descrição:  Busca um elemento na lista.
