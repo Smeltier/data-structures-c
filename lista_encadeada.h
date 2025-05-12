@@ -17,7 +17,7 @@ lista_encadeada* buscar(lista_encadeada* lista, int elemento);
  * Entrada:    Nenhuma.
  * Saída:      Retorna NULL, indicando uma lista vazia.
  */
-lista_encadeada* inicializar(void);
+lista_encadeada* inicializar();
 
 /*
  * Descrição:  Insere um novo elemento no início da lista.
