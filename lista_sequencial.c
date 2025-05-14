@@ -87,6 +87,13 @@ bool inserir_fim(lista_sequencial* lista, Item item){
     return true;
 }
 
+void liberar(lista_sequencial* lista){
+    if(!lista)
+        return;
+    free(lista->dados);
+    free(lista);
+}
+
 bool remover_fim(lista_sequencial* lista){
     if(vazia(lista))
         return false;
