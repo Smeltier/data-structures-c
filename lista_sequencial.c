@@ -56,14 +56,11 @@ void exibir(lista_sequencial* lista){
 lista_sequencial* inicializar(int capacidade){
     lista_sequencial* lista = (lista_sequencial*) malloc(sizeof(lista_sequencial));
     if(!lista){
-        // error
-        exit(1);
+        return NULL;
     }
     lista->dados = (Item*) malloc(sizeof(Item) * capacidade);
     if(!lista->dados){
-        // error
-        free(lista);
-        exit(1);
+        return NULL;
     }
     lista->cap = capacidade;
     lista->qtde = 0;
@@ -87,18 +84,19 @@ bool inserir_fim(lista_sequencial* lista, Item item){
     return true;
 }
 
-void liberar(lista_sequencial* lista){
+void liberar(lista_sequencial** lista){
     if(!lista)
         return;
-    free(lista->dados);
+    free((*lista)->dados);
     free(lista);
+    lista = NULL;
 }
 
 bool remover_fim(lista_sequencial* lista){
     if(vazia(lista))
         return false;
     lista->qtde--;
-    return false;
+    return true;
 }
 
 bool remover_inicio(lista_sequencial* lista){
