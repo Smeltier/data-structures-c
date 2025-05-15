@@ -14,8 +14,8 @@ typedef int Item;
 int buscar(lista_sequencial* lista, Item item);
 
 /*
- * Descrição:  Retorna a capacidade total da lista.
- * Entrada:    Uma lista.
+* Descrição:  Retorna a capacidade total da lista.
+* Entrada:    Uma lista.
  * Saída:      Capacidade máxima da lista.
  */
 int capacidade(lista_sequencial* lista);
@@ -61,6 +61,20 @@ bool inserir_inicio(lista_sequencial* lista, Item item);
  * Saída:      true se o item foi inserido corretamente; caso contrário, false.
  */
 bool inserir_meio(lista_sequencial* lista, Item item, int posicao);
+
+/*
+ * Descrição:  Libera a memória alocada para a lista.
+ * Entrada:    Endereço do ponteiro da lista.
+ * Saída:      Nenhuma.
+ */
+void liberar(lista_sequencial** lista);
+
+/*
+ * Descrição:  Remove todos os itens da lista sem liberar memória.
+ * Entrada:    Uma lista.
+ * Saída:      Nenhuma.
+ */
+void limpar(lista_sequencial* lista);
 
 /*
  * Descrição:  Remove o item do final da lista.

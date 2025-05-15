@@ -8,32 +8,9 @@ struct lista_sequencial {
     int cap, qtde;
 };
 
-bool inserir_meio(lista_sequencial* lista, Item item, int posicao){
-    if(cheia(lista))
-        return false;
-    for(int i = lista->qtde; i >= posicao; i--)
-        lista->dados[i] = lista->dados[i - 1];
-    lista->dados[posicao - 1] = item;
-    (lista->qtde)++;
-    return true;
-}
-
-bool remover_meio(lista_sequencial* lista, int posicao){
-    if(vazia(lista) || posicao < 1 || posicao > lista->qtde)
-        return false;
-    for(int i = posicao - 1; i < lista->qtde - 1; i++)
-        lista->dados[i] = lista->dados[i + 1];
-    lista->qtde--;
-    return true;
-}
-
-void limpar(lista_sequencial* lista){
-    lista->qtde = 0;
-}
-
 int buscar(lista_sequencial* lista, Item item){
     if(vazia(lista))
-        return false;
+        return 0;
     for(int i = 0; i < lista->qtde; i++)
         if(lista->dados[i] == item)
             return i + 1;
@@ -67,6 +44,13 @@ lista_sequencial* inicializar(int capacidade){
     return lista;
 }
 
+bool inserir_fim(lista_sequencial* lista, Item item){
+    if(cheia(lista))
+        return false;
+    lista->dados[lista->qtde++] = item;
+    return true;
+}
+
 bool inserir_inicio(lista_sequencial* lista, Item item){
     if(cheia(lista))
         return false;
@@ -77,10 +61,13 @@ bool inserir_inicio(lista_sequencial* lista, Item item){
     return true;
 }
 
-bool inserir_fim(lista_sequencial* lista, Item item){
+bool inserir_meio(lista_sequencial* lista, Item item, int posicao){
     if(cheia(lista))
         return false;
-    lista->dados[lista->qtde++] = item;
+    for(int i = lista->qtde; i >= posicao; i--)
+        lista->dados[i] = lista->dados[i - 1];
+    lista->dados[posicao - 1] = item;
+    (lista->qtde)++;
     return true;
 }
 
@@ -88,8 +75,12 @@ void liberar(lista_sequencial** lista){
     if(!lista)
         return;
     free((*lista)->dados);
-    free(lista);
-    lista = NULL;
+    free(*lista);
+    *lista = NULL;
+}
+
+void limpar(lista_sequencial* lista){
+    lista->qtde = 0;
 }
 
 bool remover_fim(lista_sequencial* lista){
@@ -103,6 +94,15 @@ bool remover_inicio(lista_sequencial* lista){
     if(vazia(lista))
         return false;
     for(int i = 0; i < lista->qtde - 1; i++)
+        lista->dados[i] = lista->dados[i + 1];
+    lista->qtde--;
+    return true;
+}
+
+bool remover_meio(lista_sequencial* lista, int posicao){
+    if(vazia(lista) || posicao < 1 || posicao > lista->qtde)
+        return false;
+    for(int i = posicao - 1; i < lista->qtde - 1; i++)
         lista->dados[i] = lista->dados[i + 1];
     lista->qtde--;
     return true;
