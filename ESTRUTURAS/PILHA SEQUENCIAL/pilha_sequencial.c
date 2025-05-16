@@ -31,10 +31,11 @@ pilha_sequencial* ps_inicializar(int tamanho){
     return nova_pilha;
 }
 
-Item ps_pop(pilha_sequencial* pilha){
+bool ps_pop(pilha_sequencial* pilha){
     if(!pilha || ps_vazia(pilha))
         return false;
-    return pilha->dados[pilha->qtde--];
+    pilha->qtde--;
+    return true;
 }
 
 bool ps_push(pilha_sequencial* pilha, Item item){
