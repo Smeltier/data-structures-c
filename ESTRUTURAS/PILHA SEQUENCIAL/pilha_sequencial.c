@@ -20,10 +20,8 @@ pilha_sequencial* ps_inicializar(int tamanho){
         return NULL;
     
     nova_pilha->dados = (Item*) malloc(tamanho* sizeof(Item));
-    if(!nova_pilha->dados){
-        nova_pilha->dados = NULL;
+    if(!nova_pilha->dados)
         return NULL;
-    }
 
     nova_pilha->cap = tamanho;
     nova_pilha->qtde = 0;
