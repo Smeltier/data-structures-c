@@ -24,7 +24,7 @@ Item fs_front(fila_sequencial* fila){
     return fila->dados[fila->qtde - 1];
 }
 
-fila_sequencial* fs_inicializar(int tamanho){
+fila_sequencial* fs_inicializar(const int tamanho){
     fila_sequencial* nova_fila = (fila_sequencial*) malloc(sizeof(fila_sequencial));
     if(!nova_fila)
         return NULL;
@@ -48,7 +48,7 @@ bool fs_pop(fila_sequencial* fila){
     return true;
 }
 
-bool fs_push(fila_sequencial* fila, Item item){
+bool fs_push(fila_sequencial* fila, const Item item){
     if(!fila || fs_cheia(fila))
         return false;
     

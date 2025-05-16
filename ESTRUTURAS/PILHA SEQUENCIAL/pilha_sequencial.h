@@ -10,11 +10,11 @@ int ps_capacidade(pilha_sequencial* pilha);
 
 bool ps_cheia(pilha_sequencial* pilha);
 
-pilha_sequencial* ps_inicializar(int tamanho);
+pilha_sequencial* ps_inicializar(const int tamanho);
 
 bool ps_pop(pilha_sequencial* pilha);
 
-bool ps_push(pilha_sequencial* pilha, Item item);
+bool ps_push(pilha_sequencial* pilha, const Item item);
 
 int ps_tamanho(pilha_sequencial* pilha);
 

@@ -8,7 +8,7 @@ struct lista_sequencial_ordenada {
     int cap, qtde;
 };
 
-int lso_busca_binaria(lista_sequencial_ordenada* lista, Item item){
+int lso_busca_binaria(lista_sequencial_ordenada* lista, const Item item){
     int left = 0, right = lista->qtde - 1;
     while(left < right){
         int mid = left + (right - left) / 2;
@@ -35,7 +35,7 @@ void lso_exibir(lista_sequencial_ordenada* lista){
         printf("%d ", lista->dados[i]);
 }
 
-lista_sequencial_ordenada* lso_inicializar(int capacidade){
+lista_sequencial_ordenada* lso_inicializar(const int capacidade){
     lista_sequencial_ordenada* lista = (lista_sequencial_ordenada*) malloc(sizeof(lista_sequencial_ordenada));
     if(!lista){
         return NULL;
@@ -49,7 +49,7 @@ lista_sequencial_ordenada* lso_inicializar(int capacidade){
     return lista;
 }
 
-bool lso_inserir(lista_sequencial_ordenada* lista, Item item){
+bool lso_inserir(lista_sequencial_ordenada* lista, const Item item){
     if(cheia(lista))
         return false;
     int posicao_inserir = lista->qtde;
@@ -91,7 +91,7 @@ bool lso_remover_inicio(lista_sequencial_ordenada* lista){
     return true;
 }
 
-bool lso_remover_meio(lista_sequencial_ordenada* lista, int posicao){
+bool lso_remover_meio(lista_sequencial_ordenada* lista, const int posicao){
     if(vazia(lista) || posicao < 1 || posicao > lista->qtde)
         return false;
     for(int i = posicao - 1; i < lista->qtde - 1; i++)

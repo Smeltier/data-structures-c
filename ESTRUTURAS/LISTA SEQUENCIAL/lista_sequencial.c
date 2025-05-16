@@ -8,7 +8,7 @@ struct lista_sequencial {
     int cap, qtde;
 };
 
-int ls_buscar(lista_sequencial* lista, Item item){
+int ls_buscar(lista_sequencial* lista, const Item item){
     if(vazia(lista))
         return 0;
     for(int i = 0; i < lista->qtde; i++)
@@ -30,7 +30,7 @@ void ls_exibir(lista_sequencial* lista){
         printf("%d ", lista->dados[i]);
 }
 
-lista_sequencial* ls_inicializar(int capacidade){
+lista_sequencial* ls_inicializar(const int capacidade){
     lista_sequencial* lista = (lista_sequencial*) malloc(sizeof(lista_sequencial));
     if(!lista){
         return NULL;
@@ -44,14 +44,14 @@ lista_sequencial* ls_inicializar(int capacidade){
     return lista;
 }
 
-bool ls_inserir_fim(lista_sequencial* lista, Item item){
+bool ls_inserir_fim(lista_sequencial* lista, const Item item){
     if(cheia(lista))
         return false;
     lista->dados[lista->qtde++] = item;
     return true;
 }
 
-bool ls_inserir_inicio(lista_sequencial* lista, Item item){
+bool ls_inserir_inicio(lista_sequencial* lista, const Item item){
     if(cheia(lista))
         return false;
     for(int i = lista->qtde; i > 0; i--)
@@ -61,7 +61,7 @@ bool ls_inserir_inicio(lista_sequencial* lista, Item item){
     return true;
 }
 
-bool ls_inserir_meio(lista_sequencial* lista, Item item, int posicao){
+bool ls_inserir_meio(lista_sequencial* lista, const Item item, const int posicao){
     if(cheia(lista))
         return false;
     for(int i = lista->qtde; i >= posicao; i--)
@@ -99,7 +99,7 @@ bool ls_remover_inicio(lista_sequencial* lista){
     return true;
 }
 
-bool ls_remover_meio(lista_sequencial* lista, int posicao){
+bool ls_remover_meio(lista_sequencial* lista, const int posicao){
     if(vazia(lista) || posicao < 1 || posicao > lista->qtde)
         return false;
     for(int i = posicao - 1; i < lista->qtde - 1; i++)

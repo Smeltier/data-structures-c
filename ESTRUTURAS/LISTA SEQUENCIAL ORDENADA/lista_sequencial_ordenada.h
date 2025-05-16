@@ -11,7 +11,7 @@ typedef int Item;
  * Entrada:    Uma lista e o item.
  * Saída:      Retorna a posição do item na lista; caso não encontre, retorna zero.
  */
-int lso_busca_binaria(lista_sequencial_ordenada* lista, Item item);
+int lso_busca_binaria(lista_sequencial_ordenada* lista, const Item item);
 
 /*
 * Descrição:  Retorna a capacidade total da lista.
@@ -39,14 +39,14 @@ void lso_exibir(lista_sequencial_ordenada* lista);
  * Entrada:    Uma lista e o item.
  * Saída:      true se o item for inserido corretamente e false caso contrário.
  */
-bool lso_inserir(lista_sequencial_ordenada* lista, Item item);
+bool lso_inserir(lista_sequencial_ordenada* lista, const Item item);
 
 /*
  * Descrição:  Inicializa a lista com capacidade definida.
  * Entrada:    Um inteiro representando a capacidade.
  * Saída:      Ponteiro para a nova lista inicializada.
  */
-lista_sequencial_ordenada* lso_inicializar(int capacidade);
+lista_sequencial_ordenada* lso_inicializar(const int capacidade);
 
 /*
  * Descrição:  Libera a memória alocada para a lista.
@@ -81,7 +81,7 @@ bool lso_remover_inicio(lista_sequencial_ordenada* lista);
  * Entrada:    Uma lista e a posição do item.
  * Saída:      true se o item foi removido corretamente; caso contrário, false.
  */
-bool lso_remover_meio(lista_sequencial_ordenada* lista, int posicao);
+bool lso_remover_meio(lista_sequencial_ordenada* lista, const int posicao);
 
 /*
  * Descrição:  Retorna o tamanho atual da lista.

@@ -11,7 +11,7 @@ typedef int Item;
  * Entrada:    Uma lista e o item.
  * Saída:      Retorna a posição do item na lista; caso não encontre, retorna zero.
  */
-int ls_buscar(lista_sequencial* lista, Item item);
+int ls_buscar(lista_sequencial* lista, const Item item);
 
 /*
 * Descrição:  Retorna a capacidade total da lista.
@@ -39,28 +39,28 @@ void ls_exibir(lista_sequencial* lista);
  * Entrada:    Um inteiro representando a capacidade.
  * Saída:      Ponteiro para a nova lista inicializada.
  */
-lista_sequencial* ls_inicializar(int capacidade);
+lista_sequencial* ls_inicializar(const int capacidade);
 
 /*
  * Descrição:  Insere um item no final da lista.
  * Entrada:    Uma lista e o item.
  * Saída:      true se o item foi inserido corretamente; caso contrário, false.
  */
-bool ls_inserir_fim(lista_sequencial* lista, Item item);
+bool ls_inserir_fim(lista_sequencial* lista, const Item item);
 
 /*
  * Descrição:  Insere um item no início da lista.
  * Entrada:    Uma lista e o item.
  * Saída:      true se o item foi inserido corretamente; caso contrário, false.
  */
-bool ls_inserir_inicio(lista_sequencial* lista, Item item);
+bool ls_inserir_inicio(lista_sequencial* lista, const Item item);
 
 /*
  * Descrição:  Insere um item em uma posição específica da lista.
  * Entrada:    Uma lista, o item e a posição desejada.
  * Saída:      true se o item foi inserido corretamente; caso contrário, false.
  */
-bool ls_inserir_meio(lista_sequencial* lista, Item item, int posicao);
+bool ls_inserir_meio(lista_sequencial* lista, const Item item, const int posicao);
 
 /*
  * Descrição:  Libera a memória alocada para a lista.
@@ -95,7 +95,7 @@ bool ls_remover_inicio(lista_sequencial* lista);
  * Entrada:    Uma lista e a posição do item.
  * Saída:      true se o item foi removido corretamente; caso contrário, false.
  */
-bool ls_remover_meio(lista_sequencial* lista, int posicao);
+bool ls_remover_meio(lista_sequencial* lista, const int posicao);
 
 /*
  * Descrição:  Retorna o tamanho atual da lista.

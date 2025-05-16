@@ -14,12 +14,12 @@ bool ps_cheia(pilha_sequencial* pilha){
     return pilha->qtde == pilha->cap;
 }
 
-pilha_sequencial* ps_inicializar(int tamanho){
+pilha_sequencial* ps_inicializar(const int tamanho){
     pilha_sequencial* nova_pilha = (pilha_sequencial*) malloc(sizeof(pilha_sequencial));
     if(!nova_pilha)
         return NULL;
     
-    nova_pilha->dados = (Item*) malloc(tamanho* sizeof(Item));
+    nova_pilha->dados = (Item*) malloc(tamanho * sizeof(Item));
     if(!nova_pilha->dados)
         return NULL;
 
@@ -36,7 +36,7 @@ bool ps_pop(pilha_sequencial* pilha){
     return true;
 }
 
-bool ps_push(pilha_sequencial* pilha, Item item){
+bool ps_push(pilha_sequencial* pilha, const Item item){
     if(!pilha || ps_cheia(pilha))
         return false;
     pilha->dados[pilha->qtde++] = item;
