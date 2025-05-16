@@ -1,14 +1,14 @@
-#include "lista_sequencial.h"
+#include "lista_sequencial_ordenada.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct lista_sequencial {
+struct lista_sequencial_ordenada {
     Item* dados;
     int cap, qtde;
 };
 
-int buscar_binaria(lista_sequencial* lista, Item item){
+int lso_busca_binaria(lista_sequencial_ordenada* lista, Item item){
     int left = 0, right = lista->qtde - 1;
     while(left < right){
         int mid = left + (right - left) / 2;
@@ -22,21 +22,21 @@ int buscar_binaria(lista_sequencial* lista, Item item){
     return 0;
 }
 
-int capacidade(lista_sequencial* lista){
+int lso_capacidade(lista_sequencial_ordenada* lista){
     return lista->cap;
 }
 
-bool cheia(lista_sequencial* lista){
+bool lso_cheia(lista_sequencial_ordenada* lista){
     return lista->qtde == lista->cap;
 }
 
-void exibir(lista_sequencial* lista){
+void lso_exibir(lista_sequencial_ordenada* lista){
     for(int i = 0; i < lista->qtde; i++)
         printf("%d ", lista->dados[i]);
 }
 
-lista_sequencial* inicializar(int capacidade){
-    lista_sequencial* lista = (lista_sequencial*) malloc(sizeof(lista_sequencial));
+lista_sequencial_ordenada* lso_inicializar(int capacidade){
+    lista_sequencial_ordenada* lista = (lista_sequencial_ordenada*) malloc(sizeof(lista_sequencial_ordenada));
     if(!lista){
         return NULL;
     }
@@ -49,7 +49,7 @@ lista_sequencial* inicializar(int capacidade){
     return lista;
 }
 
-bool inserir(lista_sequencial* lista, Item item){
+bool lso_inserir(lista_sequencial_ordenada* lista, Item item){
     if(cheia(lista))
         return false;
     int posicao_inserir = lista->qtde;
@@ -63,7 +63,7 @@ bool inserir(lista_sequencial* lista, Item item){
     return true;
 }
 
-void liberar(lista_sequencial** lista){
+void lso_liberar(lista_sequencial_ordenada** lista){
     if(!lista)
         return;
     free((*lista)->dados);
@@ -71,18 +71,18 @@ void liberar(lista_sequencial** lista){
     *lista = NULL;
 }
 
-void limpar(lista_sequencial* lista){
+void lso_limpar(lista_sequencial_ordenada* lista){
     lista->qtde = 0;
 }
 
-bool remover_fim(lista_sequencial* lista){
+bool lso_remover_fim(lista_sequencial_ordenada* lista){
     if(vazia(lista))
         return false;
     lista->qtde--;
     return true;
 }
 
-bool remover_inicio(lista_sequencial* lista){
+bool lso_remover_inicio(lista_sequencial_ordenada* lista){
     if(vazia(lista))
         return false;
     for(int i = 0; i < lista->qtde - 1; i++)
@@ -91,7 +91,7 @@ bool remover_inicio(lista_sequencial* lista){
     return true;
 }
 
-bool remover_meio(lista_sequencial* lista, int posicao){
+bool lso_remover_meio(lista_sequencial_ordenada* lista, int posicao){
     if(vazia(lista) || posicao < 1 || posicao > lista->qtde)
         return false;
     for(int i = posicao - 1; i < lista->qtde - 1; i++)
@@ -100,10 +100,10 @@ bool remover_meio(lista_sequencial* lista, int posicao){
     return true;
 }
 
-int tamanho(lista_sequencial* lista){
+int lso_tamanho(lista_sequencial_ordenada* lista){
     return lista->qtde;
 }
 
-bool vazia(lista_sequencial* lista){
+bool lso_vazia(lista_sequencial_ordenada* lista){
     return lista->qtde == 0;
 }
