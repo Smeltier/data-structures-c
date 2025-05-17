@@ -1,5 +1,6 @@
 #include "fila_sequencial.h"
 #include <stdlib.h>
+#include <limits.h>
 
 struct fila_sequencial{
     Item* dados;
@@ -20,7 +21,7 @@ bool fs_cheia(fila_sequencial* fila){
 
 Item fs_front(fila_sequencial* fila){
     if(fs_vazia(fila))
-        return NULL; // ??
+        return INT_MIN;
     return fila->dados[fila->qtde - 1];
 }
 

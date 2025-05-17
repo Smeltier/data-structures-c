@@ -10,7 +10,7 @@ struct lista_sequencial_ordenada {
 
 int lso_busca_binaria(lista_sequencial_ordenada* lista, const Item item){
     int left = 0, right = lista->qtde - 1;
-    while(left < right){
+    while(left <= right){
         int mid = left + (right - left) / 2;
         if(lista->dados[mid] == item)
             return mid + 1;
