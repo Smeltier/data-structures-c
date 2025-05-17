@@ -72,7 +72,7 @@ bool ls_inserir_meio(lista_sequencial* lista, const Item item, const int posicao
 }
 
 void ls_liberar(lista_sequencial** lista){
-    if(!lista)
+    if(!lista || !*lista)
         return;
     free((*lista)->dados);
     free(*lista);

@@ -14,8 +14,8 @@ typedef int Item;
 int lso_busca_binaria(lista_sequencial_ordenada* lista, const Item item);
 
 /*
-* Descrição:  Retorna a capacidade total da lista.
-* Entrada:    Uma lista.
+ * Descrição:  Retorna a capacidade total da lista.
+ * Entrada:    Uma lista.
  * Saída:      Capacidade máxima da lista.
  */
 int lso_capacidade(lista_sequencial_ordenada* lista);

@@ -41,6 +41,14 @@ fila_sequencial* fs_inicializar(const int tamanho){
     return nova_fila;
 }
 
+void fs_liberar(fila_sequencial** fila){
+    if(!fila || !*fila)
+        return;
+    free((*fila)->dados);
+    free(*fila);
+    *fila = NULL;
+}
+
 bool fs_pop(fila_sequencial* fila){
     if(!fila || fs_vazia(fila))
         return false;

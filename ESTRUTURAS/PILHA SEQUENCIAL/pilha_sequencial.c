@@ -29,6 +29,14 @@ pilha_sequencial* ps_inicializar(const int tamanho){
     return nova_pilha;
 }
 
+void ps_liberar(pilha_sequencial** pilha){
+    if(!pilha || !*pilha)
+        return;
+    free((*pilha)->dados);
+    free(*pilha);
+    *pilha = NULL;
+}
+
 bool ps_pop(pilha_sequencial* pilha){
     if(!pilha || ps_vazia(pilha))
         return false;

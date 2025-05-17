@@ -12,6 +12,8 @@ bool ps_cheia(pilha_sequencial* pilha);
 
 pilha_sequencial* ps_inicializar(const int tamanho);
 
+void ps_liberar(pilha_sequencial** pilha);
+
 bool ps_pop(pilha_sequencial* pilha);
 
 bool ps_push(pilha_sequencial* pilha, const Item item);

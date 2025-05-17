@@ -64,7 +64,7 @@ bool lso_inserir(lista_sequencial_ordenada* lista, const Item item){
 }
 
 void lso_liberar(lista_sequencial_ordenada** lista){
-    if(!lista)
+    if(!lista || !*lista)
         return;
     free((*lista)->dados);
     free(*lista);

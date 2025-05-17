@@ -14,8 +14,8 @@ typedef int Item;
 int ls_buscar(lista_sequencial* lista, const Item item);
 
 /*
-* Descrição:  Retorna a capacidade total da lista.
-* Entrada:    Uma lista.
+ * Descrição:  Retorna a capacidade total da lista.
+ * Entrada:    Uma lista.
  * Saída:      Capacidade máxima da lista.
  */
 int ls_capacidade(lista_sequencial* lista);
