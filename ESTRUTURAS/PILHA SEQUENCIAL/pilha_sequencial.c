@@ -6,15 +6,18 @@ struct pilha_sequencial{
     int cap, qtde;
 };
 
-int ps_capacidade(pilha_sequencial* pilha){
+int 
+ps_capacidade(pilha_sequencial* pilha){
     return pilha->cap;
 }
 
-bool ps_cheia(pilha_sequencial* pilha){
+bool 
+ps_cheia(pilha_sequencial* pilha){
     return pilha->qtde == pilha->cap;
 }
 
-pilha_sequencial* ps_inicializar(const int tamanho){
+pilha_sequencial* 
+ps_inicializar(const int tamanho){
     pilha_sequencial* nova_pilha = (pilha_sequencial*) malloc(sizeof(pilha_sequencial));
     if(!nova_pilha)
         return NULL;
@@ -29,7 +32,8 @@ pilha_sequencial* ps_inicializar(const int tamanho){
     return nova_pilha;
 }
 
-void ps_liberar(pilha_sequencial** pilha){
+void 
+ps_liberar(pilha_sequencial** pilha){
     if(!pilha || !*pilha)
         return;
     free((*pilha)->dados);
@@ -37,28 +41,33 @@ void ps_liberar(pilha_sequencial** pilha){
     *pilha = NULL;
 }
 
-bool ps_pop(pilha_sequencial* pilha){
+bool 
+ps_pop(pilha_sequencial* pilha){
     if(!pilha || ps_vazia(pilha))
         return false;
     pilha->qtde--;
     return true;
 }
 
-bool ps_push(pilha_sequencial* pilha, const Item item){
+bool 
+ps_push(pilha_sequencial* pilha, const Item item){
     if(!pilha || ps_cheia(pilha))
         return false;
     pilha->dados[pilha->qtde++] = item;
     return true;
 }
 
-int ps_tamanho(pilha_sequencial* pilha){
+int 
+ps_tamanho(pilha_sequencial* pilha){
     return pilha->qtde;
 }
 
-Item ps_top(pilha_sequencial* pilha){
+Item 
+ps_top(pilha_sequencial* pilha){
     return pilha->dados[pilha->qtde - 1];
 }
 
-bool ps_vazia(pilha_sequencial* pilha){
+bool 
+ps_vazia(pilha_sequencial* pilha){
     return pilha->qtde == 0;
 }

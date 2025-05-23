@@ -14,7 +14,14 @@ struct lista_encadeada{
 
 lista_encadeada* 
 le_inicializar(void){
-    return NULL;
+    lista_encadeada* nova_lista = (lista_encadeada*) (sizeof(lista_encadeada));
+    if(!nova_lista)
+        return NULL;
+
+    nova_lista->primeiro = NULL;
+    nova_lista->quantidade = 0;
+
+    return nova_lista;
 }
 
 bool 
@@ -51,24 +58,15 @@ le_inserir_fim(lista_encadeada* lista, Item item){
 
 bool
 le_inserir_meio(lista_encadeada* lista, Item item, int posicao){
-    if(vazia(lista) || posicao <= 0 || posicao > lista->quantidade)
+    if(posicao <= 0 || posicao > lista->quantidade)
         return false;
-
-    int posicao_atual = 1;
-    componente* componente_auxiliar = lista->primeiro;
-    while(componente_auxiliar->proximo != NULL && posicao_atual <= posicao - 1){
-        componente_auxiliar = componente_auxiliar->proximo;
-        posicao_atual++;
-    }
-
+        
     componente* novo_componente = (componente*) malloc(sizeof(componente));
     if(!novo_componente)
         return false;
 
-    novo_componente->conteudo = item;
-    novo_componente->proximo = componente_auxiliar->proximo;
-    componente_auxiliar->proximo = novo_componente;
-    lista->quantidade++;
+    
+
 
     return true;
 }
