@@ -6,10 +6,6 @@ struct fila_sequencial{
     int cap, qtde;
 };
 
-Item fs_back(fila_sequencial* fila){
-    return fila->dados[0];
-}
-
 int fs_capacidade(fila_sequencial* fila){
     return fila->cap;
 }
@@ -18,9 +14,8 @@ bool fs_cheia(fila_sequencial* fila){
     return fila->qtde == fila->cap;
 }
 
-Item fs_front(fila_sequencial* fila){
-    if(fs_vazia(fila))
-        return NULL; // ??
+Item fs_frente(fila_sequencial* fila){
+    // Não trata o caso da fila ser NULL ou vazia.
     return fila->dados[fila->qtde - 1];
 }
 
@@ -31,7 +26,7 @@ fila_sequencial* fs_inicializar(int tamanho){
     
     nova_fila->dados = (Item*) malloc(tamanho * sizeof(Item));
     if(!nova_fila->dados){
-        nova_fila->dados = NULL;
+        free(nova_fila);
         return NULL;
     }
 
@@ -41,23 +36,26 @@ fila_sequencial* fs_inicializar(int tamanho){
     return nova_fila;
 }
 
+fila_sequencial* liberar(fila_sequencial* fila){
+    free(fila->dados);
+    free(fila);
+    return NULL;
+}
+
 bool fs_pop(fila_sequencial* fila){
-    if(!fila || fs_vazia(fila))
+    if(vazia(fila))
         return false;
+    for(int i = 0; i < fila->qtde - 1; i++)
+        fila->dados[i] = fila->dados[i + 1];
     fila->qtde--;
     return true;
 }
 
 bool fs_push(fila_sequencial* fila, Item item){
-    if(!fila || fs_cheia(fila))
+    if(fs_cheia(fila))
         return false;
-    
-    for(int i = fila->qtde; i > 0; i--)
-        fila->dados[i] = fila->dados[i - 1];
-    
-    fila->dados[0] = item;
+    fila->dados[fila->qtde] = item;
     fila->qtde++;
-
     return true;
 }
 
