@@ -1,36 +1,40 @@
 #include "lista_sequencial.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 struct lista_sequencial {
     Item* dados;
-    int cap, qtde;
+    int capacidade, quantidade;
 };
 
-int ls_buscar(lista_sequencial* lista, const Item item){
+int 
+ls_buscar(lista_sequencial* lista, const Item item){
     if(vazia(lista))
         return 0;
-    for(int i = 0; i < lista->qtde; i++)
+    for(int i = 0; i < lista->quantidade; i++)
         if(lista->dados[i] == item)
             return i + 1;
     return 0;
 }
 
-int ls_capacidade(lista_sequencial* lista){
-    return lista->cap;
+int 
+ls_capacidade(lista_sequencial* lista){
+    return lista->capacidade;
 }
 
-bool ls_cheia(lista_sequencial* lista){
-    return lista->qtde == lista->cap;
+bool 
+ls_cheia(lista_sequencial* lista){
+    return lista->quantidade == lista->capacidade;
 }
 
-void ls_exibir(lista_sequencial* lista){
-    for(int i = 0; i < lista->qtde; i++)
+void 
+ls_exibir(lista_sequencial* lista){
+    for(int i = 0; i < lista->quantidade; i++)
         printf("%d ", lista->dados[i]);
 }
 
-lista_sequencial* ls_inicializar(const int capacidade){
+lista_sequencial* 
+ls_inicializar(const int capacidade){
     lista_sequencial* lista = (lista_sequencial*) malloc(sizeof(lista_sequencial));
     if(!lista){
         return NULL;
@@ -39,39 +43,43 @@ lista_sequencial* ls_inicializar(const int capacidade){
     if(!lista->dados){
         return NULL;
     }
-    lista->cap = capacidade;
-    lista->qtde = 0;
+    lista->capacidade = capacidade;
+    lista->quantidade = 0;
     return lista;
 }
 
-bool ls_inserir_fim(lista_sequencial* lista, const Item item){
+bool 
+ls_inserir_fim(lista_sequencial* lista, const Item item){
     if(cheia(lista))
         return false;
-    lista->dados[lista->qtde++] = item;
+    lista->dados[lista->quantidade++] = item;
     return true;
 }
 
-bool ls_inserir_inicio(lista_sequencial* lista, const Item item){
+bool 
+ls_inserir_inicio(lista_sequencial* lista, const Item item){
     if(cheia(lista))
         return false;
-    for(int i = lista->qtde; i > 0; i--)
+    for(int i = lista->quantidade; i > 0; i--)
         lista->dados[i] = lista->dados[i - 1];
     lista->dados[0] = item;
-    (lista->qtde)++;
+    (lista->quantidade)++;
     return true;
 }
 
-bool ls_inserir_meio(lista_sequencial* lista, const Item item, const int posicao){
+bool 
+ls_inserir_meio(lista_sequencial* lista, const Item item, const int posicao){
     if(cheia(lista))
         return false;
-    for(int i = lista->qtde; i >= posicao; i--)
+    for(int i = lista->quantidade; i >= posicao; i--)
         lista->dados[i] = lista->dados[i - 1];
     lista->dados[posicao - 1] = item;
-    (lista->qtde)++;
+    (lista->quantidade)++;
     return true;
 }
 
-void ls_liberar(lista_sequencial** lista){
+void 
+ls_liberar(lista_sequencial** lista){
     if(!lista || !*lista)
         return;
     free((*lista)->dados);
@@ -79,39 +87,45 @@ void ls_liberar(lista_sequencial** lista){
     *lista = NULL;
 }
 
-void ls_limpar(lista_sequencial* lista){
-    lista->qtde = 0;
+void 
+ls_limpar(lista_sequencial* lista){
+    lista->quantidade = 0;
 }
 
-bool ls_remover_fim(lista_sequencial* lista){
+bool 
+ls_remover_fim(lista_sequencial* lista){
     if(vazia(lista))
         return false;
-    lista->qtde--;
+    lista->quantidade--;
     return true;
 }
 
-bool ls_remover_inicio(lista_sequencial* lista){
+bool 
+ls_remover_inicio(lista_sequencial* lista){
     if(vazia(lista))
         return false;
-    for(int i = 0; i < lista->qtde - 1; i++)
+    for(int i = 0; i < lista->quantidade - 1; i++)
         lista->dados[i] = lista->dados[i + 1];
-    lista->qtde--;
+    lista->quantidade--;
     return true;
 }
 
-bool ls_remover_meio(lista_sequencial* lista, const int posicao){
-    if(vazia(lista) || posicao < 1 || posicao > lista->qtde)
+bool 
+ls_remover_meio(lista_sequencial* lista, const int posicao){
+    if(vazia(lista) || posicao < 1 || posicao > lista->quantidade)
         return false;
-    for(int i = posicao - 1; i < lista->qtde - 1; i++)
+    for(int i = posicao - 1; i < lista->quantidade - 1; i++)
         lista->dados[i] = lista->dados[i + 1];
-    lista->qtde--;
+    lista->quantidade--;
     return true;
 }
 
-int ls_tamanho(lista_sequencial* lista){
-    return lista->qtde;
+int 
+ls_tamanho(lista_sequencial* lista){
+    return lista->quantidade;
 }
 
-bool ls_vazia(lista_sequencial* lista){
-    return lista->qtde == 0;
+bool 
+ls_vazia(lista_sequencial* lista){
+    return lista->quantidade == 0;
 }

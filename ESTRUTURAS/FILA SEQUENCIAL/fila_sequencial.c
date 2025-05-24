@@ -4,28 +4,33 @@
 
 struct fila_sequencial{
     Item* dados;
-    int cap, qtde;
+    int capacidade, quantidade;
 };
 
-Item fs_back(fila_sequencial* fila){
+Item 
+fs_back(fila_sequencial* fila){
     return fila->dados[0];
 }
 
-int fs_capacidade(fila_sequencial* fila){
-    return fila->cap;
+int 
+fs_capacidade(fila_sequencial* fila){
+    return fila->capacidade;
 }
 
-bool fs_cheia(fila_sequencial* fila){
-    return fila->qtde == fila->cap;
+bool 
+fs_cheia(fila_sequencial* fila){
+    return fila->quantidade == fila->capacidade;
 }
 
-Item fs_front(fila_sequencial* fila){
+Item 
+fs_frente(fila_sequencial* fila){
     if(fs_vazia(fila))
         return INT_MIN;
-    return fila->dados[fila->qtde - 1];
+    return fila->dados[fila->quantidade - 1];
 }
 
-fila_sequencial* fs_inicializar(const int tamanho){
+fila_sequencial* 
+fs_inicializar(const int tamanho){
     fila_sequencial* nova_fila = (fila_sequencial*) malloc(sizeof(fila_sequencial));
     if(!nova_fila)
         return NULL;
@@ -36,13 +41,14 @@ fila_sequencial* fs_inicializar(const int tamanho){
         return NULL;
     }
 
-    nova_fila->cap = tamanho;
-    nova_fila->qtde = 0;
+    nova_fila->capacidade = tamanho;
+    nova_fila->quantidade = 0;
 
     return nova_fila;
 }
 
-void fs_liberar(fila_sequencial** fila){
+void 
+fs_liberar(fila_sequencial** fila){
     if(!fila || !*fila)
         return;
     free((*fila)->dados);
@@ -50,30 +56,34 @@ void fs_liberar(fila_sequencial** fila){
     *fila = NULL;
 }
 
-bool fs_pop(fila_sequencial* fila){
+bool 
+fs_remover(fila_sequencial* fila){
     if(!fila || fs_vazia(fila))
         return false;
-    fila->qtde--;
+    fila->quantidade--;
     return true;
 }
 
-bool fs_push(fila_sequencial* fila, const Item item){
+bool 
+fs_inserir(fila_sequencial* fila, const Item item){
     if(!fila || fs_cheia(fila))
         return false;
     
-    for(int i = fila->qtde; i > 0; i--)
+    for(int i = fila->quantidade; i > 0; i--)
         fila->dados[i] = fila->dados[i - 1];
     
     fila->dados[0] = item;
-    fila->qtde++;
+    fila->quantidade++;
 
     return true;
 }
 
-int fs_tamanho(fila_sequencial* fila){
-    return fila->qtde;
+int
+fs_tamanho(fila_sequencial* fila){
+    return fila->quantidade;
 }
 
-bool fs_vazia(fila_sequencial* fila){
-    return fila->qtde == 0;
+bool 
+fs_vazia(fila_sequencial* fila){
+    return fila->quantidade == 0;
 }
