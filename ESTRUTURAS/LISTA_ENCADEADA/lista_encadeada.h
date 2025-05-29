@@ -62,6 +62,9 @@ le_inserir_meio(lista_encadeada* lista, const Item item, const int posicao);
 void 
 le_liberar(lista_encadeada** lista);
 
+void
+le_ordenar(lista_encadeada* lista);
+
 /*
 * Descrição: Remove o elemento do final da lista.
 * Entrada:   Ponteiro para a lista.
