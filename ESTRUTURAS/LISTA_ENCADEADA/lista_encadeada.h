@@ -4,7 +4,6 @@
 #include <stdbool.h>
 
 typedef struct lista_encadeada lista_encadeada;
-typedef struct componente componente;
 typedef int Item;
 
 /*

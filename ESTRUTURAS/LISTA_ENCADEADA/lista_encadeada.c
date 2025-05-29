@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef struct componente componente;
+
 struct componente {
     int conteudo;
     struct componente* proximo;
@@ -12,30 +14,46 @@ struct lista_encadeada {
     int quantidade;
 };
 
+static componente* 
+criar_componente(Item item){
+    componente* novo_componente = (componente*) calloc(1, sizeof(componente));
+    if(novo_componente)
+        novo_componente->conteudo = item;
+    return novo_componente;
+}
+
 Item 
 le_buscar(lista_encadeada* lista, const Item elemento){
     if(le_vazia(lista))
         return 0;
     int posicao_atual = 1;
     componente* item;
-    for(item = lista->primeiro; item != NULL; item = item->proximo, posicao_atual++)
+    while(item != NULL){
         if(item->conteudo == elemento)
             return posicao_atual;
+        posicao_atual++;
+    }
     return 0;
+}
+
+void le_esvalizar(lista_encadeada* lista){
+    // TODO
 }
 
 void 
 le_exibir(lista_encadeada* lista){
+    if(!lista)
+        return;
     componente* item;
-    for(item = lista->primeiro; item != NULL; item = item->proximo)
+    while(item != NULL){
         printf("%d ", item->conteudo);
+        item = item->proximo;
+    }
 }
 
 lista_encadeada* 
 le_inicializar(void){
-    lista_encadeada* nova_lista = (lista_encadeada*) malloc(sizeof(lista_encadeada));
-    nova_lista->primeiro = NULL;
-    nova_lista->quantidade = 0;
+    lista_encadeada* nova_lista = (lista_encadeada*) calloc(1, sizeof(lista_encadeada));
     return nova_lista;
 }
 
@@ -44,14 +62,11 @@ le_inserir_fim(lista_encadeada* lista, const Item item){
     if(!lista)
         return false;
 
-    componente* novo_componente = (componente*) malloc(sizeof(componente));
+    componente* novo_componente = criar_componente(item);
     if(!novo_componente)
         return false;
 
-    novo_componente->conteudo = item;
-    novo_componente->proximo = NULL;
-
-    if(lista->primeiro == NULL){
+    if(le_vazia(lista)){
         lista->primeiro = novo_componente;
     } else {
         componente* componente_auxiliar = lista->primeiro;
@@ -69,11 +84,10 @@ le_inserir_inicio(lista_encadeada* lista, const Item elemento){
     if(!lista)
         return false;
 
-    componente* novo_componente = (componente*) malloc(sizeof(componente));
+    componente* novo_componente = criar_componente(elemento);
     if(!novo_componente)
         return false;
 
-    novo_componente->conteudo = elemento;
     novo_componente->proximo = lista->primeiro;
     lista->primeiro = novo_componente;
     lista->quantidade++;
@@ -83,14 +97,12 @@ le_inserir_inicio(lista_encadeada* lista, const Item elemento){
 
 bool
 le_inserir_meio(lista_encadeada* lista, const Item item, const int posicao){
-    if(!lista || posicao <= 0 || posicao > lista->quantidade + 1)
+    if(!lista || posicao < 1 || posicao > lista->quantidade + 1)
         return false;
         
-    componente* novo_componente = (componente*) malloc(sizeof(componente));
+    componente* novo_componente = criar_componente(item);
     if(!novo_componente)
         return false;
-
-    novo_componente->conteudo = item;
 
     int posicao_atual = 1;
     componente* componente_anterior = NULL;
@@ -104,8 +116,7 @@ le_inserir_meio(lista_encadeada* lista, const Item item, const int posicao){
     if(componente_anterior == NULL){
         novo_componente->proximo = lista->primeiro;
         lista->primeiro = novo_componente;
-    }   
-    else{
+    } else{
         novo_componente->proximo = componente_posicao;
         componente_anterior->proximo = novo_componente;
     }
@@ -135,19 +146,20 @@ le_remover_fim(lista_encadeada* lista){
     if(le_vazia(lista) || !lista)
         return false;
 
-    componente* componente_anterior = NULL;
-    componente* componente_final = lista->primeiro;
-    while(componente_final!= NULL && componente_final->proximo != NULL){
-        componente_anterior = componente_final;
-        componente_final = componente_final->proximo;
+    componente* componente_anterior = lista->primeiro;
+    if(le_tamanho(lista) == 1){
+        free(componente_anterior);
+        return true;
+    } else {
+        componente* componente_final = componente_anterior->proximo;
+        while(componente_final->proximo != NULL){
+            componente_anterior = componente_final;
+            componente_final = componente_final->proximo;
+        }
+        componente_anterior->proximo = NULL;
+        free(componente_final);
     }
 
-    if(componente_anterior == NULL)
-        lista->primeiro = NULL;
-    else
-        componente_anterior->proximo = NULL;
-
-    free(componente_final);
     lista->quantidade--;
 
     return true;
@@ -158,10 +170,10 @@ le_remover_inicio(lista_encadeada* lista){
     if(!lista || le_vazia(lista))
         return false;
 
-    componente* componente_auxiliar = lista->primeiro;
-
-    lista->primeiro = componente_auxiliar->proximo;
-    free(componente_auxiliar);
+    componente* componente_temporario = lista->primeiro;
+    
+    lista->primeiro = componente_temporario->proximo;
+    free(componente_temporario);
     lista->quantidade--;
 
     return true;
@@ -195,10 +207,14 @@ le_remover_meio(lista_encadeada* lista, int posicao){
 
 int
 le_tamanho(lista_encadeada* lista){
+    if(!lista)
+        return 0;
     return lista->quantidade;
 }
 
 bool 
 le_vazia(lista_encadeada* lista){
+    if(!lista)
+        return true;
     return lista->quantidade == 0;
 }
