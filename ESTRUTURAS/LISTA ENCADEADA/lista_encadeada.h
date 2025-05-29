@@ -15,6 +15,14 @@ Item
 le_buscar(lista_encadeada* lista, const Item elemento);
 
 /*
+* Descrição: Esvazia a lista.
+* Entrada:   Ponteiro para a lista.
+* Saída:     Nenhuma.
+*/
+void 
+le_esvaziar(lista_encadeada** lista);
+
+/*
 * Descrição: Exibe todos os elementos da lista.
 * Entrada:   Ponteiro para a lista.
 * Saída:     Nenhuma.
@@ -62,6 +70,12 @@ le_inserir_meio(lista_encadeada* lista, const Item item, const int posicao);
 void 
 le_liberar(lista_encadeada** lista);
 
+
+/*
+* Descrição: Ordena os elementos da lista em ordem crescente.
+* Entrada:   Endereço do ponteiro para a lista.
+* Saída:     Nenhuma.
+*/
 void
 le_ordenar(lista_encadeada* lista);
 

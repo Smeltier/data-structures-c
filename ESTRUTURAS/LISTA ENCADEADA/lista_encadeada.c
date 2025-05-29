@@ -38,7 +38,8 @@ criar_componente(Item item){
 }
 
 
-void le_esvaziar(lista_encadeada** lista){
+void 
+le_esvaziar(lista_encadeada** lista){
     if(!lista || !(*lista))
         return;
 
