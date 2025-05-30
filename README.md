@@ -8,12 +8,17 @@ Este repositório contém implementações completas de algumas estruturas de da
 .
 ├── fila_sequencial.c
 ├── fila_sequencial.h
-├── lista_sequencial.c
-├── lista_sequencial.h
 ├── lista_encadeada.c
 ├── lista_encadeada.h
+├── lista_sequencial_ordenada.c
+├── lista_sequencial_ordenada.h
+├── lista_sequencial.c
+├── lista_sequencial.h
+├── pilha_encadeada.c
+├── pilha_encadeada.h
 ├── pilha_sequencial.c
 ├── pilha_sequencial.h
+├── LICENSE
 └── README.md
 ```
 
