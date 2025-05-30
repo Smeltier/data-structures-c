@@ -5,7 +5,7 @@
 typedef struct componente componente;
 
 struct componente {
-    int conteudo;
+    Item conteudo;
     struct componente* proximo;
 };
 
