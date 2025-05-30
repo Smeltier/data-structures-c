@@ -6,18 +6,25 @@ Este repositório contém implementações completas de algumas estruturas de da
 
 ```
 .
-├── fila_sequencial.c
-├── fila_sequencial.h
-├── lista_encadeada.c
-├── lista_encadeada.h
-├── lista_sequencial_ordenada.c
-├── lista_sequencial_ordenada.h
-├── lista_sequencial.c
-├── lista_sequencial.h
-├── pilha_encadeada.c
-├── pilha_encadeada.h
-├── pilha_sequencial.c
-├── pilha_sequencial.h
+├── ESTRUTURAS
+   ├── FILA SEQUENCIAL
+       ├── fila_sequencial.c
+       ├── fila_sequencial.h
+   ├── LISTA ENCADEADA
+       ├── lista_encadeada.c
+       ├── lista_encadeada.h
+   ├── LISTA SEQUENCIAL ORDENADA
+       ├── lista_sequencial_ordenada.c
+       ├── lista_sequencial_ordenada.h
+   ├── LISTA SEQUENCIAL
+       ├── lista_sequencial.c
+       ├── lista_sequencial.h
+   ├── PILHA ENCADEADA
+       ├── pilha_encadeada.c
+       ├── pilha_encadeada.h
+   ├── PILHA SEQUNCIAL
+       ├── pilha_sequencial.c
+       ├── pilha_sequencial.h
 ├── LICENSE
 └── README.md
 ```
