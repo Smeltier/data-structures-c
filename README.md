@@ -72,8 +72,6 @@ Estudante de Engenharia de Computação - CEFET-MG
 - [LinkedIn](https://www.linkedin.com/in/gabriel-gon%C3%A7alves-534598321/)
 - [Lattes](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K1547984P6)
 - [YouTube](https://www.youtube.com/@GabrielSmeltier)
-- [Twitter](https://x.com/Smeltier)
-- [Instagram](https://www.instagram.com/ocastrogoncalves/)
 
 ## Licença
 
