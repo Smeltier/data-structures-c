@@ -1,21 +1,20 @@
-#include "lista_encadeada.h"
+#include "lista_encadeada_ordenada.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-typedef struct componente componente;
 
 struct componente {
     Item conteudo;
     struct componente* proximo;
 };
+typedef struct componente componente;
 
-struct lista_encadeada {
+struct lista_encadeada_ordenada {
     struct componente* primeiro;
     int quantidade;
 };
 
 Item 
-le_buscar(lista_encadeada* lista, const Item elemento){
+le_buscar(lista_encadeada_ordenada* lista, const Item elemento){
     if(!lista || le_vazia(lista))
         return 0;
     int posicao_atual = 1;
@@ -39,7 +38,7 @@ criar_componente(Item item){
 
 
 void 
-le_esvaziar(lista_encadeada** lista){
+le_esvaziar(lista_encadeada_ordenada** lista){
     if(!lista || !(*lista))
         return;
 
@@ -55,7 +54,7 @@ le_esvaziar(lista_encadeada** lista){
 }
 
 void 
-le_exibir(lista_encadeada* lista){
+le_exibir(lista_encadeada_ordenada* lista){
     if(!lista)
         return;
     componente* item = lista->primeiro;
@@ -65,14 +64,14 @@ le_exibir(lista_encadeada* lista){
     }
 }
 
-lista_encadeada* 
+lista_encadeada_ordenada* 
 le_inicializar(void){
-    lista_encadeada* nova_lista = (lista_encadeada*) calloc(1, sizeof(lista_encadeada));
+    lista_encadeada_ordenada* nova_lista = (lista_encadeada_ordenada*) calloc(1, sizeof(lista_encadeada_ordenada));
     return nova_lista;
 }
 
-bool 
-le_inserir_fim(lista_encadeada* lista, const Item item){
+bool
+leo_inserir(lista_encadeada_ordenada* lista, Item item){
     if(!lista)
         return false;
 
@@ -80,67 +79,24 @@ le_inserir_fim(lista_encadeada* lista, const Item item){
     if(!novo_componente)
         return false;
 
-    if(le_vazia(lista)){
+    if(le_vazia(lista) || le_tamanho(lista) == 1){
+        novo_componente->proximo = lista->primeiro;
         lista->primeiro = novo_componente;
     } else {
         componente* componente_auxiliar = lista->primeiro;
-        while(componente_auxiliar->proximo != NULL)
+        while(componente_auxiliar->proximo != NULL && componente_auxiliar->proximo->conteudo <= item)
             componente_auxiliar = componente_auxiliar->proximo;
+        novo_componente->proximo = componente_auxiliar->proximo;
         componente_auxiliar->proximo = novo_componente;
     }
-    lista->quantidade++;
 
-    return true;
-}
-
-bool 
-le_inserir_inicio(lista_encadeada* lista, const Item elemento){
-    if(!lista)
-        return false;
-
-    componente* novo_componente = criar_componente(elemento);
-    if(!novo_componente)
-        return false;
-
-    novo_componente->proximo = lista->primeiro;
-    lista->primeiro = novo_componente;
     lista->quantidade++;
     
     return true;
 }
 
-bool
-le_inserir_meio(lista_encadeada* lista, const Item item, const int posicao){
-    if(!lista || posicao < 1 || posicao > lista->quantidade + 1)
-        return false;
-        
-    componente* novo_componente = criar_componente(item);
-    if(!novo_componente)
-        return false;
-
-    int posicao_atual = 1;
-    componente* componente_anterior = NULL;
-    componente* componente_posicao = lista->primeiro;
-    while(posicao_atual < posicao){
-        componente_anterior = componente_posicao;
-        componente_posicao = componente_posicao->proximo;
-        posicao_atual++;
-    }
-
-    if(componente_anterior == NULL){
-        novo_componente->proximo = lista->primeiro;
-        lista->primeiro = novo_componente;
-    } else{
-        novo_componente->proximo = componente_posicao;
-        componente_anterior->proximo = novo_componente;
-    }
-
-    lista->quantidade++;
-    return true;
-}
-
 void 
-le_liberar(lista_encadeada** lista){
+le_liberar(lista_encadeada_ordenada** lista){
     if(!lista || !(*lista))
         return;
     le_esvaziar(lista);
@@ -148,32 +104,8 @@ le_liberar(lista_encadeada** lista){
     *lista = NULL;
 }
 
-void
-le_ordenar(lista_encadeada* lista){
-    if(!lista || le_vazia(lista))
-        return;
-    
-    bool trocou;
-    do{
-        trocou = false;
-        componente* componente_atual = lista->primeiro;
-        
-        while(componente_atual->proximo != NULL){
-            componente* componente_proximo = componente_atual->proximo;
-
-            if(componente_atual->conteudo > componente_proximo->conteudo){
-                Item conteudo_temporario = componente_atual->conteudo;
-                componente_atual->conteudo = componente_proximo->conteudo;
-                componente_proximo->conteudo = conteudo_temporario;
-                trocou = true;
-            }
-            componente_atual = componente_proximo;
-        }
-    } while (trocou);
-}
-
 bool
-le_remover_fim(lista_encadeada* lista){
+le_remover_fim(lista_encadeada_ordenada* lista){
     if(!lista || le_vazia(lista))
         return false;
 
@@ -199,7 +131,7 @@ le_remover_fim(lista_encadeada* lista){
 }
 
 bool 
-le_remover_inicio(lista_encadeada* lista){
+le_remover_inicio(lista_encadeada_ordenada* lista){
     if(!lista || le_vazia(lista))
         return false;
 
@@ -213,7 +145,7 @@ le_remover_inicio(lista_encadeada* lista){
 }
 
 bool 
-le_remover_meio(lista_encadeada* lista, int posicao){
+le_remover_meio(lista_encadeada_ordenada* lista, int posicao){
     if(!lista || le_vazia(lista) || posicao <= 0 || posicao > lista->quantidade)
         return false;
 
@@ -239,14 +171,14 @@ le_remover_meio(lista_encadeada* lista, int posicao){
 }
 
 int
-le_tamanho(lista_encadeada* lista){
+le_tamanho(lista_encadeada_ordenada* lista){
     if(!lista)
         return 0;
     return lista->quantidade;
 }
 
 bool 
-le_vazia(lista_encadeada* lista){
+le_vazia(lista_encadeada_ordenada* lista){
     if(!lista)
         return true;
     return lista->quantidade == 0;
