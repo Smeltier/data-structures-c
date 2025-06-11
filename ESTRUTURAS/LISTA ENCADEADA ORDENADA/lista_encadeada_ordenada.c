@@ -84,7 +84,7 @@ leo_inserir(lista_encadeada_ordenada* lista, Item item){
         lista->primeiro = novo_componente;
     } else {
         componente* componente_auxiliar = lista->primeiro;
-        while(componente_auxiliar->proximo != NULL && componente_auxiliar->proximo->conteudo <= item)
+        while(componente_auxiliar->proximo != NULL && componente_auxiliar->proximo->conteudo < item)
             componente_auxiliar = componente_auxiliar->proximo;
         novo_componente->proximo = componente_auxiliar->proximo;
         componente_auxiliar->proximo = novo_componente;
