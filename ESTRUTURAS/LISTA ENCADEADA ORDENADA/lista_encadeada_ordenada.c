@@ -36,19 +36,16 @@ criar_componente(Item item){
     return novo_componente;
 }
 
-
 void 
 le_esvaziar(lista_encadeada_ordenada** lista){
     if(!lista || !(*lista))
         return;
-
     componente* componente_auxiliar = (*lista)->primeiro;
     while(componente_auxiliar != NULL){
         componente* componente_temporario = componente_auxiliar->proximo;
         free(componente_auxiliar);
         componente_auxiliar = componente_temporario;
     }
-
     (*lista)->primeiro = NULL;
     (*lista)->quantidade = 0;
 }
@@ -74,11 +71,9 @@ bool
 leo_inserir(lista_encadeada_ordenada* lista, Item item){
     if(!lista)
         return false;
-
     componente* novo_componente = criar_componente(item);
     if(!novo_componente)
         return false;
-
     if(le_vazia(lista) || lista->primeiro->conteudo >= item){
         novo_componente->proximo = lista->primeiro;
         lista->primeiro = novo_componente;
@@ -89,9 +84,7 @@ leo_inserir(lista_encadeada_ordenada* lista, Item item){
         novo_componente->proximo = componente_auxiliar->proximo;
         componente_auxiliar->proximo = novo_componente;
     }
-
     lista->quantidade++;
-    
     return true;
 }
 
@@ -108,13 +101,11 @@ bool
 le_remover_fim(lista_encadeada_ordenada* lista){
     if(!lista || le_vazia(lista))
         return false;
-
     componente* componente_anterior = lista->primeiro;
     if(le_tamanho(lista) == 1){
         free(componente_anterior);
         lista->primeiro = NULL;
         lista->quantidade--;
-        return true;
     } else {
         componente* componente_final = componente_anterior->proximo;
         while(componente_final->proximo != NULL){
@@ -124,9 +115,7 @@ le_remover_fim(lista_encadeada_ordenada* lista){
         componente_anterior->proximo = NULL;
         free(componente_final);
     }
-
     lista->quantidade--;
-
     return true;
 }
 
@@ -134,13 +123,10 @@ bool
 le_remover_inicio(lista_encadeada_ordenada* lista){
     if(!lista || le_vazia(lista))
         return false;
-
     componente* componente_temporario = lista->primeiro;
-    
     lista->primeiro = componente_temporario->proximo;
     free(componente_temporario);
     lista->quantidade--;
-
     return true;
 }
 
@@ -148,7 +134,6 @@ bool
 le_remover_meio(lista_encadeada_ordenada* lista, int posicao){
     if(!lista || le_vazia(lista) || posicao <= 0 || posicao > lista->quantidade)
         return false;
-
     int posicao_atual = 1;
     componente* componente_anterior = NULL;
     componente* componente_posicao = lista->primeiro;
@@ -157,14 +142,12 @@ le_remover_meio(lista_encadeada_ordenada* lista, int posicao){
         componente_posicao = componente_posicao->proximo;
         posicao_atual++;
     }
-
     if(componente_anterior == NULL){
         lista->primeiro = componente_posicao->proximo;
     }
     else{
         componente_anterior->proximo = componente_posicao->proximo;
     }
-
     free(componente_posicao);
     lista->quantidade--;
     return true;
