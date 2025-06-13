@@ -37,7 +37,6 @@ criar_componente(Item item){
     return novo_componente;
 }
 
-
 void 
 le_esvaziar(lista_encadeada** lista){
     if(!lista || !(*lista))
