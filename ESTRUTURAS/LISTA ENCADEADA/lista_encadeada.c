@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct componente componente;
-
 struct componente {
     Item conteudo;
     struct componente* proximo;
 };
+typedef struct componente componente;
 
 struct lista_encadeada {
     struct componente* primeiro;
@@ -36,7 +35,6 @@ criar_componente(Item item){
         novo_componente->conteudo = item;
     return novo_componente;
 }
-
 
 void 
 le_esvaziar(lista_encadeada** lista){
