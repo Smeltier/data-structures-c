@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct componente{
+struct componente{
     Item conteudo;
     struct componente* proximo;
-} componente;
+};
+typedef struct componente componente;
 
 struct lista_encadeada_circular{
     struct componente* primeiro;
@@ -14,8 +15,9 @@ struct lista_encadeada_circular{
 
 componente*
 criar_componente(Item item){
-    componente* novo_componente = (lista_encadeada_circular*) calloc(1, sizeof(lista_encadeada_circular));
-    if(novo_componente) novo_componente->conteudo = item;
+    componente* novo_componente = (componente*) calloc(1, sizeof(componente));
+    if(novo_componente) 
+        novo_componente->conteudo = item;
     return novo_componente;
 }
 
@@ -25,38 +27,46 @@ lsc_inicializar(){
     return nova_lista;
 }
 
-bool
-lsc_inserir(lista_encadeada_circular* lista, Item item){
-    if(!lista) return false;
+bool 
+lsc_inserir(lista_encadeada_circular* lista, Item item) {
+    if (!lista) 
+        return false;
 
     componente* novo_componente = criar_componente(item);
-    if(!novo_componente) return false;
+    if (!novo_componente) 
+        return false;
 
-    componente* componente_auxiliar = lista->primeiro;
-    while(componente_auxiliar->proximo != lista->primeiro)
-        componente_auxiliar = componente_auxiliar->proximo;
+    if (lista->primeiro == NULL) {
+        novo_componente->proximo = novo_componente;
+        lista->primeiro = novo_componente;
+    } else {
+        componente* aux = lista->primeiro;
+        while (aux->proximo != lista->primeiro)
+            aux = aux->proximo;
+        aux->proximo = novo_componente;
+        novo_componente->proximo = lista->primeiro;
+    }
 
-    componente_auxiliar->proximo = novo_componente;
-    novo_componente->proximo = lista->primeiro;
     lista->quantidade++;
 
     return true;
 }
 
-bool
-lsc_remover(lista_encadeada_circular* lista){
-    if(!lista || lsc_vazia(lista)) return false;
+bool lsc_remover(lista_encadeada_circular* lista) {
+    if (!lista || lista->primeiro == NULL) 
+        return false;
 
-    componente* componente_remover = lista->primeiro;
-    componente* componente_auxiliar = NULL;
-    while(componente_remover->proximo != lista->primeiro){
-        componente_auxiliar = componente_remover;
-        componente_remover = componente_remover->proximo;
-    }
-
-    if(componente_auxiliar == NULL){
+    componente* atual = lista->primeiro;
+    if (atual->proximo == atual) {
+        free(atual);
         lista->primeiro = NULL;
-        free(componente_remover);
+    } else {
+        componente* anterior = atual;
+        while (anterior->proximo != lista->primeiro)
+            anterior = anterior->proximo;
+        anterior->proximo = atual->proximo;
+        lista->primeiro = atual->proximo;
+        free(atual);
     }
 
     lista->quantidade--;
@@ -66,10 +76,12 @@ lsc_remover(lista_encadeada_circular* lista){
 
 bool 
 lsc_vazia(lista_encadeada_circular* lista){
-    return lista->quantidade == 0;
+    return !lista || lista->quantidade == 0;
 }
 
-bool 
+int 
 lsc_tamanho(lista_encadeada_circular* lista){
+    if(!lista)
+        return 0;
     return lista->quantidade;
 }

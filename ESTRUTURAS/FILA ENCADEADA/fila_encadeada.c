@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct componente componente;
-
 struct componente {
     Item conteudo;
     struct componente* proximo;
 };
+typedef struct componente componente;
 
 struct fila_encadeada {
     struct componente* primeiro;
