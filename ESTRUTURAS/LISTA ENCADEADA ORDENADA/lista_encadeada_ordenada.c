@@ -79,7 +79,7 @@ leo_inserir(lista_encadeada_ordenada* lista, Item item){
     if(!novo_componente)
         return false;
 
-    if(le_vazia(lista) || le_tamanho(lista) == 1){
+    if(le_vazia(lista) || lista->primeiro->conteudo >= item){
         novo_componente->proximo = lista->primeiro;
         lista->primeiro = novo_componente;
     } else {
