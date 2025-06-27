@@ -23,7 +23,7 @@ no* criar_no(Item conteudo);
 /*
 * Descrição: Exibe em ordem os conteúdos da subárvore com raiz no nó fornecido.
 * Entrada:   Ponteiro para o nó raiz.
-* Saída:     Impressão dos itens no stdout.
+* Saída:     Nenhuma.
 */
 void exibir_no(no* raiz);
 
