@@ -7,30 +7,25 @@ struct fila_sequencial{
     int capacidade, quantidade;
 };
 
-Item 
-fs_back(fila_sequencial* fila){
+Item fs_back(fila_sequencial* fila){
     return fila->dados[0];
 }
 
-int 
-fs_capacidade(fila_sequencial* fila){
+int fs_capacidade(fila_sequencial* fila){
     return fila->capacidade;
 }
 
-bool 
-fs_cheia(fila_sequencial* fila){
+bool fs_cheia(fila_sequencial* fila){
     return fila->quantidade == fila->capacidade;
 }
 
-Item 
-fs_frente(fila_sequencial* fila){
+Item fs_frente(fila_sequencial* fila){
     if(fs_vazia(fila))
         return INT_MIN;
     return fila->dados[fila->quantidade - 1];
 }
 
-fila_sequencial* 
-fs_inicializar(const int tamanho){
+fila_sequencial* fs_inicializar(const int tamanho){
     fila_sequencial* nova_fila = (fila_sequencial*) malloc(sizeof(fila_sequencial));
     if(!nova_fila)
         return NULL;
@@ -53,8 +48,7 @@ fila_sequencial* liberar(fila_sequencial* fila){
     return NULL;
 }
 
-void 
-fs_liberar(fila_sequencial** fila){
+void fs_liberar(fila_sequencial** fila){
     if(!fila || !*fila)
         return;
     free((*fila)->dados);
@@ -62,16 +56,14 @@ fs_liberar(fila_sequencial** fila){
     *fila = NULL;
 }
 
-bool 
-fs_remover(fila_sequencial* fila){
+bool fs_remover(fila_sequencial* fila){
     if(!fila || fs_vazia(fila))
         return false;
     fila->quantidade--;
     return true;
 }
 
-bool 
-fs_inserir(fila_sequencial* fila, const Item item){
+bool fs_inserir(fila_sequencial* fila, const Item item){
     if(!fila || fs_cheia(fila))
         return false;
     
@@ -84,12 +76,10 @@ fs_inserir(fila_sequencial* fila, const Item item){
     return true;
 }
 
-int
-fs_tamanho(fila_sequencial* fila){
+int fs_tamanho(fila_sequencial* fila){
     return fila->quantidade;
 }
 
-bool 
-fs_vazia(fila_sequencial* fila){
+bool fs_vazia(fila_sequencial* fila){
     return fila->quantidade == 0;
 }

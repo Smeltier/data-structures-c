@@ -13,16 +13,14 @@ struct pilha_encadeada {
     int quantidade;
 };
 
-static componente*
-criar_componente(Item item){
+static componente* criar_componente(Item item){
     componente* novo_componente = (componente*) calloc(1, sizeof(componente));
     if(novo_componente)
         novo_componente->conteudo = item;
     return novo_componente;
 }
 
-void
-pe_esvaziar(pilha_encadeada** pilha){
+void pe_esvaziar(pilha_encadeada** pilha){
     if(!pilha || !(*pilha))
         return;
 
@@ -37,14 +35,12 @@ pe_esvaziar(pilha_encadeada** pilha){
     (*pilha)->quantidade = 0;
 }
 
-pilha_encadeada*
-pe_inicializar(void){
+pilha_encadeada* pe_inicializar(void){
     pilha_encadeada* nova_pilha = (pilha_encadeada*) calloc(1, sizeof(pilha_encadeada));
     return nova_pilha;   
 }
 
-bool
-pe_inserir(pilha_encadeada* pilha, const Item item){
+bool pe_inserir(pilha_encadeada* pilha, const Item item){
     if(!pilha)
         return;
 
@@ -59,8 +55,7 @@ pe_inserir(pilha_encadeada* pilha, const Item item){
     return true;
 }
 
-void
-pe_liberar(pilha_encadeada** pilha){
+void pe_liberar(pilha_encadeada** pilha){
     if(!pilha || !(*pilha))
         return;
     pe_esvaziar(pilha);
@@ -68,8 +63,7 @@ pe_liberar(pilha_encadeada** pilha){
     *pilha = NULL;
 }
 
-bool
-pe_remover(pilha_encadeada* pilha){
+bool pe_remover(pilha_encadeada* pilha){
     if(!pilha || pe_vazia(pilha))
         return false;
     
@@ -83,22 +77,19 @@ pe_remover(pilha_encadeada* pilha){
     return true;
 }
 
-int
-pe_tamanho(pilha_encadeada* pilha){
+int pe_tamanho(pilha_encadeada* pilha){
     if(!pilha)
         return 0;
     return pilha->quantidade;
 }
 
-Item
-pe_topo(pilha_encadeada* pilha){
+Item pe_topo(pilha_encadeada* pilha){
     if(!pilha || pe_vazia(pilha))
         return INT_MIN;
     return pilha->primeiro->conteudo;
 }
 
-bool
-pe_vazia(pilha_encadeada* pilha){
+bool pe_vazia(pilha_encadeada* pilha){
     if(!pilha)
         return true;
     return pilha->quantidade == 0;

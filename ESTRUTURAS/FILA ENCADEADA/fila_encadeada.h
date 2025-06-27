@@ -11,55 +11,48 @@ typedef int Item;
 * Entrada:   Ponteiro para a fila.
 * Saída:     Nenhuma.
 */
-void 
-fe_esvaziar(fila_encadeada** fila);
+void fe_esvaziar(fila_encadeada** fila);
 
 /*
 * Descrição: Inicializa uma nova fila encadeada vazia.
 * Entrada:   Nenhuma.
 * Saída:     Ponteiro para a nova fila.
 */
-fila_encadeada* 
-fe_inicializar(void);
+fila_encadeada* fe_inicializar(void);
 
 /*
 * Descrição: Insere um efemento no fim da fila.
 * Entrada:   Ponteiro para a fila e o efemento a inserir.
 * Saída:     true se a inserção for bem sucedida, false caso contrário.
 */
-bool 
-fe_inserir(fila_encadeada* fila, const Item item);
+bool fe_inserir(fila_encadeada* fila, const Item item);
 
 /*
 * Descrição: Libera toda a memória ocupada pela fila e seus componentes.
 * Entrada:   Endereço do ponteiro para a fila.
 * Saída:     Nenhuma.
 */
-void 
-fe_liberar(fila_encadeada** fila);
+void fe_liberar(fila_encadeada** fila);
 
 /*
 * Descrição: Remove o efemento da frente da fila.
 * Entrada:   Ponteiro para a fila.
 * Saída:     true se a remoção for bem sucedida, false caso contrário.
 */
-bool 
-fe_remover(fila_encadeada* fila);
+bool fe_remover(fila_encadeada* fila);
 
 /*
 * Descrição: Retorna a quantidade de efementos na fila.
 * Entrada:   Ponteiro para a fila.
 * Saída:     Número de efementos presentes na fila.
 */
-int 
-fe_tamanho(fila_encadeada* fila);
+int fe_tamanho(fila_encadeada* fila);
 
 /*
 * Descrição: Verifica se a fila está vazia.
 * Entrada:   Ponteiro para a fila.
 * Saída:     true se estiver vazia, false caso contrário.
 */
-bool 
-fe_vazia(fila_encadeada* fila);
+bool fe_vazia(fila_encadeada* fila);
 
 #endif // FILA_ENCADEADA_H

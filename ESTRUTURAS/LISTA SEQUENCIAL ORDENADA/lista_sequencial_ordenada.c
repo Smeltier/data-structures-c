@@ -8,8 +8,7 @@ struct lista_sequencial_ordenada {
     int capacidade, quantidade;
 };
 
-int 
-lso_busca_binaria(lista_sequencial_ordenada* lista, const Item item){
+int lso_busca_binaria(lista_sequencial_ordenada* lista, const Item item){
     int left = 0, right = lista->quantidade - 1;
     while(left <= right){
         int mid = left + (right - left) / 2;
@@ -23,24 +22,20 @@ lso_busca_binaria(lista_sequencial_ordenada* lista, const Item item){
     return 0;
 }
 
-int 
-lso_capacidade(lista_sequencial_ordenada* lista){
+int lso_capacidade(lista_sequencial_ordenada* lista){
     return lista->capacidade;
 }
 
-bool 
-lso_cheia(lista_sequencial_ordenada* lista){
+bool lso_cheia(lista_sequencial_ordenada* lista){
     return lista->quantidade == lista->capacidade;
 }
 
-void 
-lso_exibir(lista_sequencial_ordenada* lista){
+void lso_exibir(lista_sequencial_ordenada* lista){
     for(int i = 0; i < lista->quantidade; i++)
         printf("%d ", lista->dados[i]);
 }
 
-lista_sequencial_ordenada* 
-lso_inicializar(const int capacidade){
+lista_sequencial_ordenada* lso_inicializar(const int capacidade){
     lista_sequencial_ordenada* lista = (lista_sequencial_ordenada*) malloc(sizeof(lista_sequencial_ordenada));
     if(!lista){
         return NULL;
@@ -54,8 +49,7 @@ lso_inicializar(const int capacidade){
     return lista;
 }
 
-bool 
-lso_inserir(lista_sequencial_ordenada* lista, const Item item){
+bool lso_inserir(lista_sequencial_ordenada* lista, const Item item){
     if(cheia(lista))
         return false;
     int posicao_inserir = lista->quantidade;
@@ -69,8 +63,7 @@ lso_inserir(lista_sequencial_ordenada* lista, const Item item){
     return true;
 }
 
-void 
-lso_liberar(lista_sequencial_ordenada** lista){
+void lso_liberar(lista_sequencial_ordenada** lista){
     if(!lista || !*lista)
         return;
     free((*lista)->dados);
@@ -78,21 +71,18 @@ lso_liberar(lista_sequencial_ordenada** lista){
     *lista = NULL;
 }
 
-void 
-lso_limpar(lista_sequencial_ordenada* lista){
+void lso_limpar(lista_sequencial_ordenada* lista){
     lista->quantidade = 0;
 }
 
-bool 
-lso_remover_fim(lista_sequencial_ordenada* lista){
+bool lso_remover_fim(lista_sequencial_ordenada* lista){
     if(vazia(lista))
         return false;
     lista->quantidade--;
     return true;
 }
 
-bool 
-lso_remover_inicio(lista_sequencial_ordenada* lista){
+bool lso_remover_inicio(lista_sequencial_ordenada* lista){
     if(vazia(lista))
         return false;
     for(int i = 0; i < lista->quantidade - 1; i++)
@@ -101,8 +91,7 @@ lso_remover_inicio(lista_sequencial_ordenada* lista){
     return true;
 }
 
-bool 
-lso_remover_meio(lista_sequencial_ordenada* lista, const int posicao){
+bool lso_remover_meio(lista_sequencial_ordenada* lista, const int posicao){
     if(vazia(lista) || posicao < 1 || posicao > lista->quantidade)
         return false;
     for(int i = posicao - 1; i < lista->quantidade - 1; i++)
@@ -111,12 +100,10 @@ lso_remover_meio(lista_sequencial_ordenada* lista, const int posicao){
     return true;
 }
 
-int 
-lso_tamanho(lista_sequencial_ordenada* lista){
+int lso_tamanho(lista_sequencial_ordenada* lista){
     return lista->quantidade;
 }
 
-bool 
-lso_vazia(lista_sequencial_ordenada* lista){
+bool lso_vazia(lista_sequencial_ordenada* lista){
     return lista->quantidade == 0;
 }

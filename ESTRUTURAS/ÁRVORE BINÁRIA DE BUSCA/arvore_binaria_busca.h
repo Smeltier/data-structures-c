@@ -6,16 +6,22 @@
 typedef struct arvore_binaria_busca arvore_binaria_busca;
 typedef int Item; 
 
-arvore_binaria_busca* aab_inicializar();
+bool abb_buscar(arvore_binaria_busca* arvore, Item item);
 
-void aab_exibir(arvore_binaria_busca* arvore);
+void abb_esvaziar(arvore_binaria_busca* arvore);
 
-void aab_inserir(arvore_binaria_busca* arvore, Item item);
+void abb_exibir(arvore_binaria_busca* arvore);
 
-int aab_quantidade_nos(arvore_binaria_busca* arvore);
+arvore_binaria_busca* abb_inicializar();
 
-void aab_esvaziar(arvore_binaria_busca* arvore);
+void abb_inserir(arvore_binaria_busca* arvore, Item item);
 
-void aab_liberar(arvore_binaria_busca** arvore);
+void abb_liberar(arvore_binaria_busca** arvore);
+
+int abb_quantidade_nos(arvore_binaria_busca* arvore);
+
+void abb_remover(arvore_binaria_busca* arvore, Item item);
+
+bool abb_vazia(arvore_binaria_busca* arvore);
 
 #endif // ARVORE_BINARIA_BUSCA_H

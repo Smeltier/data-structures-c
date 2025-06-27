@@ -8,8 +8,7 @@ struct lista_sequencial_circular{
     int capacidade;
 };
 
-void
-lsc_exibir(lista_sequencial_circular* lista){
+void lsc_exibir(lista_sequencial_circular* lista){
     if(!lista || lsc_vazia(lista))
         return;
 
@@ -20,8 +19,7 @@ lsc_exibir(lista_sequencial_circular* lista){
     }
 }
 
-lista_sequencial_circular*
-lsc_inicializar(int tamanho){
+lista_sequencial_circular* lsc_inicializar(int tamanho){
     lista_sequencial_circular* nova_lista = (lista_sequencial_circular*) malloc(sizeof(lista_sequencial_circular));
     if(!nova_lista)
         return NULL;
@@ -39,8 +37,7 @@ lsc_inicializar(int tamanho){
     return nova_lista;
 }
 
-bool
-lsc_inserir(lista_sequencial_circular* lista, Item item){
+bool lsc_inserir(lista_sequencial_circular* lista, Item item){
     if(!lista)
         return false;
 
@@ -54,8 +51,7 @@ lsc_inserir(lista_sequencial_circular* lista, Item item){
     return true;
 }
 
-bool
-lsc_remover(lista_sequencial_circular* lista){
+bool lsc_remover(lista_sequencial_circular* lista){
     if(!lista || lsc_vazia(lista))
         return false;
 
@@ -71,8 +67,7 @@ lsc_remover(lista_sequencial_circular* lista){
     return true;
 }
 
-int 
-lsc_tamanho(lista_sequencial_circular* lista){
+int lsc_tamanho(lista_sequencial_circular* lista){
     if(!lista || lista->inicio == -1)
         return 0;
 
@@ -82,7 +77,6 @@ lsc_tamanho(lista_sequencial_circular* lista){
         return lista->fim - lista->inicio + lista->capacidade;
 }
 
-bool
-lsc_vazia(lista_sequencial_circular* lista){
+bool lsc_vazia(lista_sequencial_circular* lista){
     return lsc_tamanho(lista) == 0;
 }

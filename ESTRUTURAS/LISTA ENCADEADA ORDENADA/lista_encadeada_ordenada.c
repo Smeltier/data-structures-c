@@ -13,8 +13,7 @@ struct lista_encadeada_ordenada {
     int quantidade;
 };
 
-Item 
-le_buscar(lista_encadeada_ordenada* lista, const Item elemento){
+Item le_buscar(lista_encadeada_ordenada* lista, const Item elemento){
     if(!lista || le_vazia(lista))
         return 0;
     int posicao_atual = 1;
@@ -28,16 +27,14 @@ le_buscar(lista_encadeada_ordenada* lista, const Item elemento){
     return 0;
 }
 
-static componente* 
-criar_componente(Item item){
+static componente* criar_componente(Item item){
     componente* novo_componente = (componente*) calloc(1, sizeof(componente));
     if(novo_componente)
         novo_componente->conteudo = item;
     return novo_componente;
 }
 
-void 
-le_esvaziar(lista_encadeada_ordenada** lista){
+void le_esvaziar(lista_encadeada_ordenada** lista){
     if(!lista || !(*lista))
         return;
     componente* componente_auxiliar = (*lista)->primeiro;
@@ -50,8 +47,7 @@ le_esvaziar(lista_encadeada_ordenada** lista){
     (*lista)->quantidade = 0;
 }
 
-void 
-le_exibir(lista_encadeada_ordenada* lista){
+void le_exibir(lista_encadeada_ordenada* lista){
     if(!lista)
         return;
     componente* item = lista->primeiro;
@@ -61,14 +57,12 @@ le_exibir(lista_encadeada_ordenada* lista){
     }
 }
 
-lista_encadeada_ordenada* 
-le_inicializar(void){
+lista_encadeada_ordenada* le_inicializar(void){
     lista_encadeada_ordenada* nova_lista = (lista_encadeada_ordenada*) calloc(1, sizeof(lista_encadeada_ordenada));
     return nova_lista;
 }
 
-bool
-leo_inserir(lista_encadeada_ordenada* lista, Item item){
+bool leo_inserir(lista_encadeada_ordenada* lista, Item item){
     if(!lista)
         return false;
     componente* novo_componente = criar_componente(item);
@@ -88,8 +82,7 @@ leo_inserir(lista_encadeada_ordenada* lista, Item item){
     return true;
 }
 
-void 
-le_liberar(lista_encadeada_ordenada** lista){
+void le_liberar(lista_encadeada_ordenada** lista){
     if(!lista || !(*lista))
         return;
     le_esvaziar(lista);
@@ -97,8 +90,7 @@ le_liberar(lista_encadeada_ordenada** lista){
     *lista = NULL;
 }
 
-bool
-le_remover_fim(lista_encadeada_ordenada* lista){
+bool le_remover_fim(lista_encadeada_ordenada* lista){
     if(!lista || le_vazia(lista))
         return false;
     componente* componente_anterior = lista->primeiro;
@@ -119,8 +111,7 @@ le_remover_fim(lista_encadeada_ordenada* lista){
     return true;
 }
 
-bool 
-le_remover_inicio(lista_encadeada_ordenada* lista){
+bool le_remover_inicio(lista_encadeada_ordenada* lista){
     if(!lista || le_vazia(lista))
         return false;
     componente* componente_temporario = lista->primeiro;
@@ -130,8 +121,7 @@ le_remover_inicio(lista_encadeada_ordenada* lista){
     return true;
 }
 
-bool 
-le_remover_meio(lista_encadeada_ordenada* lista, int posicao){
+bool le_remover_meio(lista_encadeada_ordenada* lista, int posicao){
     if(!lista || le_vazia(lista) || posicao <= 0 || posicao > lista->quantidade)
         return false;
     int posicao_atual = 1;
@@ -153,15 +143,13 @@ le_remover_meio(lista_encadeada_ordenada* lista, int posicao){
     return true;
 }
 
-int
-le_tamanho(lista_encadeada_ordenada* lista){
+int le_tamanho(lista_encadeada_ordenada* lista){
     if(!lista)
         return 0;
     return lista->quantidade;
 }
 
-bool 
-le_vazia(lista_encadeada_ordenada* lista){
+bool le_vazia(lista_encadeada_ordenada* lista){
     if(!lista)
         return true;
     return lista->quantidade == 0;

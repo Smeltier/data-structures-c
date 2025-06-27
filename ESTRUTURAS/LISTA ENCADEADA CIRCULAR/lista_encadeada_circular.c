@@ -13,22 +13,19 @@ struct lista_encadeada_circular{
     int quantidade;
 };
 
-componente*
-criar_componente(Item item){
+componente* criar_componente(Item item){
     componente* novo_componente = (componente*) calloc(1, sizeof(componente));
     if(novo_componente) 
         novo_componente->conteudo = item;
     return novo_componente;
 }
 
-lista_encadeada_circular*
-lsc_inicializar(){
+lista_encadeada_circular* lsc_inicializar(){
     lista_encadeada_circular* nova_lista = (lista_encadeada_circular*) calloc(1, sizeof(lista_encadeada_circular));
     return nova_lista;
 }
 
-bool 
-lsc_inserir(lista_encadeada_circular* lista, Item item) {
+bool lsc_inserir(lista_encadeada_circular* lista, Item item) {
     if (!lista) 
         return false;
 
@@ -74,13 +71,11 @@ bool lsc_remover(lista_encadeada_circular* lista) {
     return true;
 }
 
-bool 
-lsc_vazia(lista_encadeada_circular* lista){
+bool lsc_vazia(lista_encadeada_circular* lista){
     return !lista || lista->quantidade == 0;
 }
 
-int 
-lsc_tamanho(lista_encadeada_circular* lista){
+int lsc_tamanho(lista_encadeada_circular* lista){
     if(!lista)
         return 0;
     return lista->quantidade;

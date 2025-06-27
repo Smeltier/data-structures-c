@@ -13,18 +13,15 @@ struct fila_encadeada {
     int quantidade;
 };
 
-static componente* 
-criar_componente(Item item){
+static componente* criar_componente(Item item){
     componente* novo_componente = (componente*) calloc(1, sizeof(componente));
     if(novo_componente)
         novo_componente->conteudo = item;
     return novo_componente;
 }
 
-void 
-fe_esvaziar(fila_encadeada** fila){
-    if(!fila || !(*fila))
-        return;
+void fe_esvaziar(fila_encadeada** fila){
+    if(!fila || !(*fila)) return;
 
     componente* componente_auxiliar = (*fila)->primeiro;
     while(componente_auxiliar != NULL){
@@ -37,24 +34,20 @@ fe_esvaziar(fila_encadeada** fila){
     (*fila)->quantidade = 0;
 }
 
-fila_encadeada* 
-fe_inicializar(void){
+fila_encadeada* fe_inicializar(void){
     fila_encadeada* nova_fila = (fila_encadeada*) calloc(1, sizeof(fila_encadeada));
     return nova_fila;
 }
 
-bool 
-fe_inserir(fila_encadeada* fila, const Item item){
-    if(!fila)
-        return false;
+bool fe_inserir(fila_encadeada* fila, const Item item){
+    if(!fila) return false;
 
     componente* novo_componente = criar_componente(item);
-    if(!novo_componente)
-        return false;
+    if(!novo_componente) return false;
 
-    if(fe_vazia(fila)){
+    if(fe_vazia(fila))
         fila->primeiro = novo_componente;
-    } else {
+    else{
         componente* componente_auxiliar = fila->primeiro;
         while(componente_auxiliar->proximo != NULL)
             componente_auxiliar = componente_auxiliar->proximo;
@@ -65,17 +58,14 @@ fe_inserir(fila_encadeada* fila, const Item item){
     return true;
 }
 
-void 
-fe_liberar(fila_encadeada** fila){
-    if(!fila || !(*fila))
-        return;
+void fe_liberar(fila_encadeada** fila){
+    if(!fila || !(*fila)) return;
     fe_esvaziar(fila);
     free(*fila);
     *fila = NULL;
 }
 
-bool 
-fe_remover(fila_encadeada* fila){
+bool fe_remover(fila_encadeada* fila){
     if(!fila || fe_vazia(fila))
         return false;
 
@@ -88,16 +78,12 @@ fe_remover(fila_encadeada* fila){
     return true;
 }
 
-int
-fe_tamanho(fila_encadeada* fila){
-    if(!fila)
-        return 0;
+int fe_tamanho(fila_encadeada* fila){
+    if(!fila) return 0;
     return fila->quantidade;
 }
 
-bool 
-fe_vazia(fila_encadeada* fila){
-    if(!fila)
-        return true;
+bool fe_vazia(fila_encadeada* fila){
+    if(!fila) return true;
     return fila->quantidade == 0;
 }
