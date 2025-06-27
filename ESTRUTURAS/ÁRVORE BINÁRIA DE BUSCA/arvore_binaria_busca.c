@@ -27,47 +27,31 @@ arvore_binaria_busca* aab_inicializar(){
 }
 
 void exibir_no(no* raiz) {
-    if (raiz) {
-        exibir_no(raiz->arvore_esquerda);
-        printf("%d ", raiz->conteudo);
-        exibir_no(raiz->arvore_direita);
-    }
+    if (raiz) return;
+    exibir_no(raiz->arvore_esquerda);
+    printf("%d ", raiz->conteudo);
+    exibir_no(raiz->arvore_direita);
 }
 
 void aab_exibir(arvore_binaria_busca* arvore) {
-    if (arvore) exibir_no(arvore->raiz);
+    if (!arvore) return;
+    exibir_no(arvore->raiz);
 }
 
-bool aab_inserir(arvore_binaria_busca* arvore, Item item){
-    if (!arvore) return false;
+no* inserir_no(no* raiz, Item item){
+    if(!raiz) return criar_no(item);
 
-    no* novo_no = criar_no(item);
-    if (!novo_no) return false;
+    if(item < raiz->conteudo)
+        raiz->arvore_esquerda = inserir_no(raiz->arvore_esquerda, item);
+    else 
+        raiz->arvore_direita = inserir_no(raiz->arvore_direita, item);
 
-    if (!arvore->raiz) {
-        arvore->raiz = novo_no;
-    } else {
-        no* atual = arvore->raiz;
-        while (true) {
-            if (item <= atual->conteudo) {
-                if (!atual->arvore_esquerda) {
-                    atual->arvore_esquerda = novo_no;
-                    break;
-                }
-                atual = atual->arvore_esquerda;
-            } else {
-                if (!atual->arvore_direita) {
-                    atual->arvore_direita = novo_no;
-                    break;
-                }
-                atual = atual->arvore_direita;
-            }
-        }
-    }
+    return raiz;
+}
 
-    arvore->quantidade_nos++;
-
-    return true;
+void aab_inserir(arvore_binaria_busca* arvore, Item item){
+    if (!arvore) return;
+    arvore->raiz = inserir_no(arvore->raiz, item);
 }
 
 int aab_quantidade_nos (arvore_binaria_busca* arvore){
@@ -76,11 +60,12 @@ int aab_quantidade_nos (arvore_binaria_busca* arvore){
 }
 
 void remover_no(no* raiz) {
-    if (raiz) {
-        remover_no(raiz->arvore_esquerda);
-        remover_no(raiz->arvore_direita);
-        free(raiz);
-    }
+    if (!raiz) return;
+
+    no* no_auxiliar = raiz;
+    remover_no(raiz->arvore_esquerda);
+    remover_no(raiz->arvore_direita);
+    free(no_auxiliar);
 }
 
 void aab_esvaziar(arvore_binaria_busca* arvore){

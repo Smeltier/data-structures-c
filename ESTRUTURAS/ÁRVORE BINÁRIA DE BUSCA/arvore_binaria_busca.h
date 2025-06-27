@@ -10,7 +10,7 @@ arvore_binaria_busca* aab_inicializar();
 
 void aab_exibir(arvore_binaria_busca* arvore);
 
-bool aab_inserir(arvore_binaria_busca* arvore, Item item);
+void aab_inserir(arvore_binaria_busca* arvore, Item item);
 
 int aab_quantidade_nos(arvore_binaria_busca* arvore);
 
