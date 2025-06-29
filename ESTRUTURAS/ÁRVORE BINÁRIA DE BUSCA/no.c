@@ -1,4 +1,5 @@
 #include "no.h"
+#include "fila_encadeada.h"
 #include <stdio.h>
 #include <stdlib.h>
 
