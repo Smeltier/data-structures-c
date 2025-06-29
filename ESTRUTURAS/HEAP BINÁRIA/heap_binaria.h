@@ -5,7 +5,7 @@
 
 typedef int Item;
 typedef struct heap_binaria heap_binaria;
-typedef enum TipoHeap TipoHeap;
+typedef enum tipo_heap tipo_heap;
 
 
 

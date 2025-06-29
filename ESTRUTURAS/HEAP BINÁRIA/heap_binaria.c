@@ -1,7 +1,7 @@
 #include "heap_binaria.h"
 #include <stdlib.h>
 
-enum TipoHeap{
+enum tipo_heap{
     HEAP_MINIMA,
     HEAP_MAXIMA
 };
@@ -10,10 +10,10 @@ struct heap_binaria{
     Item* dados;
     int tamanho;
     int capacidade;
-    TipoHeap tipo;
+    tipo_heap tipo;
 };
 
-heap_binaria* heap_inicializar(int capacidade, TipoHeap tipo){
+heap_binaria* heap_inicializar(int capacidade, tipo_heap tipo){
     heap_binaria* nova_heap = (heap_binaria*) malloc(sizeof(heap_binaria));
     if(!nova_heap) return NULL;
 
