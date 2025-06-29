@@ -56,8 +56,7 @@ bool fe_remover(fila_encadeada* fila){
     componente* temp = fila->primeiro;
     fila->primeiro = temp->proximo;
 
-    liberar_nos(temp->conteudo);  
-    free(temp);
+    free(temp);  
 
     fila->quantidade--;
     return true;
@@ -69,7 +68,6 @@ void fe_esvaziar(fila_encadeada** fila){
     componente* atual = (*fila)->primeiro;
     while(atual){
         componente* proximo = atual->proximo;
-        liberar_nos(atual->conteudo);
         free(atual);
         atual = proximo;
     }
