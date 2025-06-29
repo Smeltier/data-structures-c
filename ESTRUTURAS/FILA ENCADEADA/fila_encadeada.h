@@ -14,6 +14,13 @@ typedef int Item;
 void fe_esvaziar(fila_encadeada** fila);
 
 /*
+* Descrição: Retorna o item que está na frente da fila.
+* Entrada:   Ponteiro para a fila.
+* Saída:     O item que está na frente ou INT_MIN caso esteja vazia.
+*/
+Item fe_frente(fila_encadeada* fila);
+
+/*
 * Descrição: Inicializa uma nova fila encadeada vazia.
 * Entrada:   Nenhuma.
 * Saída:     Ponteiro para a nova fila.
