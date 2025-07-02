@@ -15,7 +15,7 @@ bool abb_buscar(arvore_binaria_busca* arvore, Item item){
 }
 
 void abb_esvaziar(arvore_binaria_busca* arvore){
-    if(!arvore || aab_vazia(arvore)) return;
+    if(!arvore || abb_vazia(arvore)) return;
     liberar_nos(arvore->raiz);
     arvore->raiz = NULL;
     arvore->quantidade_nos = 0;
@@ -40,7 +40,7 @@ void abb_inserir(arvore_binaria_busca* arvore, Item item){
 
 void abb_liberar(arvore_binaria_busca** arvore){
     if(!arvore || !(*arvore)) return;
-    aab_esvaziar(*arvore);
+    abb_esvaziar(*arvore);
     free(*arvore);
     (*arvore) = NULL;
 }
@@ -51,7 +51,7 @@ int abb_quantidade_nos(arvore_binaria_busca* arvore){
 }
 
 void abb_remover(arvore_binaria_busca* arvore, Item item){
-    if(!arvore || aab_vazia(arvore)) return;
+    if(!arvore || abb_vazia(arvore)) return;
     if(abb_buscar(arvore, item)){
         arvore->raiz = remover_no(arvore->raiz, item);
         arvore->quantidade_nos--;
