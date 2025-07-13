@@ -1,6 +1,7 @@
 #include "fila_encadeada.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 
 struct componente {
     Item conteudo;
@@ -32,6 +33,12 @@ void fe_esvaziar(fila_encadeada** fila){
 
     (*fila)->primeiro = NULL;
     (*fila)->quantidade = 0;
+}
+
+Item fe_frente(fila_encadeada* fila){
+    if(!fila || fe_vazia(fila))
+        return INT_MIN;
+    return fila->primeiro->conteudo;
 }
 
 fila_encadeada* fe_inicializar(void){

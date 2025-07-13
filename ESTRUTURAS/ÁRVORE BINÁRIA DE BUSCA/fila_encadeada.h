@@ -1,6 +1,7 @@
 #ifndef FILA_ENCADEADA_H
 #define FILA_ENCADEADA_H
 
+#include "no.h"
 #include <stdbool.h>
 
 typedef struct fila_encadeada fila_encadeada;
@@ -14,25 +15,25 @@ typedef int Item;
 void fe_esvaziar(fila_encadeada** fila);
 
 /*
-* Descrição: Retorna o item que está na frente da fila.
+* Descrição: Retorna o nó que está na frente da fila.
 * Entrada:   Ponteiro para a fila.
-* Saída:     O item que está na frente ou INT_MIN caso esteja vazia.
+* Saída:     O nó que está na frente da fila ou NULL caso esteja vazia ou não alocada.
 */
-Item fe_frente(fila_encadeada* fila);
+no* fe_frente(fila_encadeada* fila);
 
 /*
 * Descrição: Inicializa uma nova fila encadeada vazia.
 * Entrada:   Nenhuma.
 * Saída:     Ponteiro para a nova fila.
 */
-fila_encadeada* fe_inicializar(void);
+fila_encadeada* fe_inicializar();
 
 /*
 * Descrição: Insere um efemento no fim da fila.
 * Entrada:   Ponteiro para a fila e o efemento a inserir.
 * Saída:     true se a inserção for bem sucedida, false caso contrário.
 */
-bool fe_inserir(fila_encadeada* fila, const Item item);
+bool fe_inserir(fila_encadeada* fila, no* ponteiro_no);
 
 /*
 * Descrição: Libera toda a memória ocupada pela fila e seus componentes.
