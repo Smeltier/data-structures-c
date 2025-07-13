@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-enum tipo_heap{
-    HEAP_MINIMA,
-    HEAP_MAXIMA
-};
-
 struct heap_binaria{
     Item* dados;
     unsigned tamanho;

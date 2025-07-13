@@ -9,11 +9,6 @@
 typedef int Item;
 typedef struct heap_binaria heap_binaria;
 
-/*
- * Descrição: Enumeração que define o tipo da heap.
- * Entrada:   Nenhuma.
- * Saída:     HEAP_MINIMA ou HEAP_MAXIMA.
- */
 typedef enum {
     HEAP_MINIMA,
     HEAP_MAXIMA
